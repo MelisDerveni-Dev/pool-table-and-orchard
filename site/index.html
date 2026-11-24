@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Pool Table and the Orchard</title>
+<meta name="description" content="An interactive walk-through of frequentist inference: Bayes' pool table, then the orchard experiment chapter by chapter, with live simulations and step-by-step derivations.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c5c45'/%3E%3Ccircle cx='12' cy='16' r='6.5' fill='%23f5f2e7'/%3E%3Ccircle cx='22' cy='14' r='4.5' fill='%23e2801e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="masthead"><div class="inner">
+  <a class="wordmark" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#1c5c45"/><circle cx="12" cy="16" r="6.5" fill="#f5f2e7"/><circle cx="22" cy="14" r="4.5" fill="#e2801e"/></svg><span>The pool table &amp; the orchard</span></a>
+  <nav class="nav" id="rail" aria-label="Chapters">
+    <a href="#pool"><b>0</b>Pool table</a>
+    <a href="#film"><b>▶</b>Film</a>
+    <a href="#ch1"><b>1</b>Fixed truth</a>
+    <a href="#ch2"><b>2</b>Probability</a>
+    <a href="#ch3"><b>3</b>Assumptions</a>
+    <a href="#ch4"><b>4</b>Estimators</a>
+    <a href="#ch5"><b>5</b>The ruler</a>
+    <a href="#ch6"><b>6</b>Test</a>
+    <a href="#ch7"><b>7</b>Interval</a>
+    <a href="#ch8"><b>8</b>Limits</a>
+    <a href="#ch9"><b>9</b>Big picture</a>
+  </nav>
+</div></header>
+
+<section class="hero" id="top">
+  <div class="hero-copy">
+    <p class="kicker">Understanding frequentist inference</p>
+    <h1>The pool table and the orchard</h1>
+    <p class="deck">A fixed truth, a random sample, and a thought experiment repeated thousands of times. Roll the balls, pick the oranges, and watch every formula in this lesson come true.</p>
+    <div class="cta-row"><a class="cta" href="#pool">Start at the table</a><a class="cta ghost" href="#ch1">Skip to the orchard</a></div>
+  </div>
+  <figure class="hero-figure">
+    <svg viewBox="0 0 560 320" role="img" aria-label="A pool table seen from above. A white ball sits about a third of the way up; two red balls lie below it and five yellow balls above it.">
+      <defs>
+        <radialGradient id="hRed" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#f08a78"/><stop offset="55%" stop-color="#c24b3a"/><stop offset="100%" stop-color="#7f2a20"/></radialGradient>
+        <radialGradient id="hAmb" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#f6d79a"/><stop offset="55%" stop-color="#d9a44a"/><stop offset="100%" stop-color="#8a5d12"/></radialGradient>
+        <radialGradient id="hWhite" cx="35%" cy="28%" r="80%"><stop offset="0%" stop-color="#fffdf6"/><stop offset="70%" stop-color="#efe9d8"/><stop offset="100%" stop-color="#c9c0a9"/></radialGradient>
+      </defs>
+      <rect x="10" y="10" width="540" height="300" rx="18" fill="#3f2c22"/>
+      <rect x="26" y="26" width="508" height="268" rx="8" fill="#16503c"/>
+      <rect x="34" y="34" width="492" height="252" rx="4" fill="#1c5c45"/>
+      <g fill="#f5f2e7" opacity=".55"><rect x="93" y="15" width="5" height="5" transform="rotate(45 95.5 17.5)"/><rect x="155" y="15" width="5" height="5" transform="rotate(45 157.5 17.5)"/><rect x="216" y="15" width="5" height="5" transform="rotate(45 218.5 17.5)"/><rect x="339" y="15" width="5" height="5" transform="rotate(45 341.5 17.5)"/><rect x="401" y="15" width="5" height="5" transform="rotate(45 403.5 17.5)"/><rect x="462" y="15" width="5" height="5" transform="rotate(45 464.5 17.5)"/></g>
+      <g fill="#0b241b" opacity=".9"><circle cx="34" cy="34" r="13"/><circle cx="280" cy="30" r="12"/><circle cx="526" cy="34" r="13"/><circle cx="34" cy="286" r="13"/><circle cx="280" cy="290" r="12"/><circle cx="526" cy="286" r="13"/></g>
+      <line x1="42" y1="193" x2="518" y2="193" stroke="#efe9d8" stroke-width="1.4" stroke-dasharray="7 7" opacity=".5"/>
+      <g fill="url(#hRed)" stroke="#5e1d15" stroke-width=".8"><circle cx="128" cy="244" r="10"/><circle cx="404" cy="262" r="10"/></g>
+      <g fill="url(#hAmb)" stroke="#6b470c" stroke-width=".8"><circle cx="92" cy="92" r="10"/><circle cx="196" cy="150" r="10"/><circle cx="300" cy="66" r="10"/><circle cx="384" cy="128" r="10"/><circle cx="474" cy="168" r="10"/></g>
+      <circle cx="262" cy="193" r="13" fill="url(#hWhite)" stroke="#b3a98f" stroke-width=".8"/>
+    </svg>
+    <figcaption>Two red balls stopped below the white ball and five yellow balls above it. A Bayesian asks where the white ball probably is. A frequentist asks how often a recipe for guessing its position would be right.</figcaption>
+  </figure>
+</section>
+
+<main>
+
+<!-- ============================================================ 0 -->
+<section class="ch" id="pool">
+  <div class="ch-head"><h2><span class="num">0</span>The pool table: one ball, two philosophies</h2></div>
+  <div class="lab mode-bayes" id="poolLab">
+    <div class="lab-title">The table <span class="eyebrow">Click to drop a ball · drag to move · drag off the table to remove</span></div>
+    <div class="pool-grid">
+      <div>
+        <canvas id="poolTable" aria-label="Pool table seen from above. Click to drop a red ball; drag balls to move them."></canvas>
+        <div class="table-status" id="tableStatus" aria-live="polite"></div>
+        <canvas id="poolChart" aria-label="Chart of what the selected model says"></canvas>
+        <p class="hint">The chart's horizontal axis is the height on the table: 0 is the bottom cushion and 1 the top cushion, as marked on the table's left rail.</p>
+      </div>
+      <div class="panel">
+        <div><div class="panel-label">Model</div>
+          <div class="seg" role="group" aria-label="Statistical model"><button id="modeBayes" aria-pressed="true">Bayesian: p is random</button><button id="modeFreq" aria-pressed="false">Frequentist: p is fixed</button></div></div>
+        <label class="ctl"><input type="checkbox" id="revealWhite"> Show the white ball (play nature)</label>
+        <div><div class="panel-label">Roll red balls</div>
+          <div class="actions"><button class="btn primary" id="throw1">Roll 1</button><button class="btn" id="throw10">Roll 10</button><button class="btn" id="throw100">Roll 100</button><button class="btn" id="clearRed">Clear</button><button class="btn" id="newWhite">New white ball</button></div></div>
+        <div class="readout">
+          <div><span><i class="dot" style="background:#c24b3a"></i>below white (red), k</span><b id="kLeft">0</b></div>
+          <div><span><i class="dot" style="background:#d9a44a"></i>above (yellow), n − k</span><b id="kRight">0</b></div>
+          <div><span>red balls, n</span><b id="kN">0</b></div>
+        </div>
+        <div class="only-freq"><div class="panel-label">Imagined repetitions · the bootstrap</div>
+          <div class="actions"><button class="btn primary" id="rep1">Replay ×1</button><button class="btn" id="rep100">Replay ×100</button></div></div>
+        <div class="explain" id="poolLive"></div>
+        <div class="explain quiet" id="poolStatic"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ film -->
+<section class="ch" id="film">
+  <div class="ch-head"><h2><span class="num">▶</span>The whole story in one film</h2></div>
+  <div class="prose"><p>A narrated walk through every chapter: the pool table, the orchard, and the reasoning that connects them. Watch it first for the big picture, or after the chapters as a recap.</p></div>
+  <figure class="film">
+    <video id="filmVideo" controls preload="metadata" playsinline poster="media/film-poster.jpg">
+      <source src="media/frequentist-explained.mp4" type="video/mp4">
+      Your browser can't play this video. <a href="media/frequentist-explained.mp4">Download the film</a> instead.
+    </video>
+    <figcaption>Narration generated on-device with HyperFrames (Kokoro voice). Chapters: 0 Pool table · 1 Fixed truth · 2 Probability · 3 Assumptions · 4 Estimators · 5 The ruler · 6 Test · 7 Interval · 8 Limits · 9 Big picture.</figcaption>
+  </figure>
+</section>
+
+<!-- ============================================================ 1 -->
+<section class="ch" id="ch1">
+  <div class="ch-head"><h2><span class="num">1</span>A fixed truth, a random sample</h2></div>
+  <div class="prose">
+    <p>Picture an orchard with thousands of orange trees. Take every orange hanging on those trees at this harvest, not last season's and not the ones already sold, and average their weights. That average is one definite number. It does not change while we study it; we simply don't know it.</p>
+    <p>The grower says his oranges weigh <strong>150 g on average</strong>, and a buyer wants to check. So we have two questions:</p>
+    <ol>
+      <li>How heavy is the average orange, and how sure can we be?</li>
+      <li>Is the average lower than the 150 g the grower claims?</li>
+    </ol>
+    <p>Weighing every orange is impossible, so we pick a handful at random and weigh those. The names we will use throughout:</p>
+    <ul class="defs">
+      <li><var>μ</var> (mu): the true average weight of all oranges in the orchard. Fixed, unknown.</li>
+      <li><var>σ</var> (sigma): how much individual oranges vary around that average, their standard deviation. Also fixed, also unknown.</li>
+      <li><var>n</var> = 10: how many oranges we pick.</li>
+      <li><var>μ</var><sub>0</sub> = 150 g: the grower's claim, the value we want to test.</li>
+    </ul>
+    <p class="takeaway"><var>μ</var> is fixed. What is random is <em>which</em> oranges we happen to pick, and therefore every number we compute from them.</p>
+    <p>This is the pool table again, in a different costume. <var>μ</var> plays the white ball: fixed, hidden, the thing we want to locate. The oranges play the red balls: random, visible, our only evidence.</p>
+    <p>Because <var>μ</var> is a single fixed number, a frequentist will not put a probability on it. "There is a 70% chance that <var>μ</var> is below 150 g" has no meaning in this framework (chapter 2 explains why). That sounds restrictive, but there is still plenty we <em>are</em> allowed to say. By the end we will be able to make four kinds of statements:</p>
+    <dl class="terms">
+      <dt>An estimate</dt><dd>"Our best guess is 139 g, and guesses made this way typically miss by about 4.7 g." (chapter 4)</dd>
+      <dt>A surprise level</dt><dd>"If <var>μ</var> really were 150 g, a result as low as ours would turn up only 2.2% of the time." (chapter 6)</dd>
+      <dt>A range</dt><dd>"The values of <var>μ</var> our data cannot rule out run from 128.3 g to 149.7 g." (chapter 7)</dd>
+      <dt>A track record</dt><dd>"The method that produced this range catches the true average 95% of the time." (chapter 7)</dd>
+    </dl>
+    <p>Notice the pattern: every probability describes the <strong>method</strong>, never <var>μ</var> itself.</p>
+    <div class="asides">
+      <details class="whatif why"><summary>Why only 10 oranges? <span class="tag">why</span></summary><div><p>Ten is small enough to follow every number by hand, which makes it a good teaching size. It is too small for a fair verdict, though: chapter 6 shows that with 10 oranges the test would miss a real 5 g shortfall three times out of four. In a real study you would choose <var>n</var> in advance, based on how small a difference you need to detect.</p></div></details>
+      <details class="whatif"><summary>What if the orchard keeps changing? <span class="tag">what if</span></summary><div><p>Then "the average orange" is a moving target, and you have to say which oranges you mean: this week's harvest, this season's, the ones shipped to this buyer. Every method on this page assumes the target sits still while we measure it. That is assumption A4 in chapter 3.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 2 -->
+<section class="ch" id="ch2">
+  <div class="ch-head"><h2><span class="num">2</span>What a probability means: picking again and again</h2></div>
+  <div class="prose">
+    <p>When a frequentist says a fair coin lands heads with probability ½, they mean something you can check: toss it many times and about half the tosses come up heads. Probability is <strong>long-run relative frequency</strong>. Repeat a procedure <var>N</var> times and count how often an event <var>A</var> happens:</p>
+    <ul class="defs">
+      <li><var>N</var>: the number of repetitions.</li>
+      <li><var>N</var><sub>A</sub>: how many of them produced <var>A</var>.</li>
+    </ul>
+    <p>The probability of <var>A</var> is the value the ratio settles on as the repetitions go on and on:</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>P</var>(<var>A</var>) = <span class="lim-op"><span>lim</span><span><var>N</var>→∞</span></span> <span class="frac"><span><var>N</var><sub>A</sub></span><span><var>N</var></span></span></span></span><span class="eq-num">(1)</span></div>
+    <p>This definition needs something that can be <em>repeated</em>. "The probability that <var>μ</var> is below 150 g" fails that test: there is one orchard and one <var>μ</var>, and it is either below 150 g or it isn't. There is nothing to count.</p>
+    <p>What we <strong>can</strong> repeat is our experiment: <em>pick 10 oranges, weigh them, average them.</em> Each repetition picks different oranges and gives a different average. So take an event about the average, say</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>A</var> = "the average of the 10 oranges comes out below 140 g"</span></span></div>
+    <p>and watch its frequency settle. The 140 g is arbitrary; any event about the average would do.</p>
+  </div>
+  <div class="lab">
+    <div class="lab-title">Relative frequency of <var>A</var> <span class="eyebrow">μ = 145 g, σ = 15 g, n = 10</span></div>
+    <canvas id="runFreq" aria-label="Running relative frequency against number of repetitions"></canvas>
+    <div class="controls">
+      <button class="btn primary" id="f1">Repeat ×1</button>
+      <button class="btn" id="f10">×10</button>
+      <button class="btn" id="f100">×100</button>
+      <button class="btn" id="fPlay">Play</button>
+      <button class="btn" id="fReset">Reset</button>
+    </div>
+    <div class="readout">
+      <div><span>Repetitions N</span><b id="fN">0</b></div>
+      <div><span>A happened, N<sub>A</sub></span><b id="fNA">0</b></div>
+      <div><span>Ratio N<sub>A</sub> / N</span><b id="fRatio">–</b></div>
+      <div><span>Latest average</span><b id="fLast">–</b></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>Early on the ratio jumps around; after thousands of repetitions it barely moves. That it settles at all is a theorem, the <strong>law of large numbers</strong>, and the leftover wobble shrinks steadily: after 10,000 repetitions the ratio typically sits within about ±0.004 of its limit.</p>
+    <p>Where does the dashed line at 0.146 come from? Averages of 10 oranges pile up into a bell-shaped curve, the <strong>normal distribution</strong>, centred on <var>μ</var> = 145 g with a spread of <var>σ</var>/√10 = 4.74 g (chapter 4 shows why). A 140 g average sits (140 − 145)/4.74 = −1.05 of those spreads below the centre. Write Φ(<var>z</var>) for the share of a bell curve that lies more than <var>z</var> spreads to the left; then</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>P</var>(<var>A</var>) = Φ<span class="paren">(</span><span class="frac"><span>140 − 145</span><span>15/√10</span></span><span class="paren">)</span> = Φ(−1.05) = 0.146</span></span></div>
+    <p>In words: 14.6% of all averages land further left than 140 g. Only someone who knows the true <var>μ</var> and <var>σ</var> can do this calculation. In the simulation that is us, playing nature; in real life, nobody.</p>
+    <p>The averages from all these imagined repetitions form the <strong>sampling distribution</strong> of the average. It is the central object of this whole lesson.</p>
+    <p class="takeaway">Every frequentist tool (standard errors, p-values, confidence intervals) is a statement about these imagined repetitions, not about the one sample we actually hold.</p>
+    <p>Back at the pool table, the frequentist <strong>Replay</strong> button did exactly this: it imagined the experiment again and again and showed where the estimates land. There the replays had to start from our own estimate, because nobody knows where the white ball is. For the orchard, statisticians don't replay at all: they work out the shape of the sampling distribution with a little algebra and a few assumptions (chapters 3 and 4).</p>
+    <div class="asides">
+      <details class="whatif why"><summary>But I only have one sample. How can repetitions I never made tell me anything about it? <span class="tag">why</span></summary><div><p>They describe the <em>method</em>, not your sample. A fair coin's "50% heads" is a property of the coin, true before any particular toss. In the same way, "averages of 10 oranges land within about 9.5 g of <var>μ</var> 95% of the time" is a property of the method "pick 10 and average". Your one sample borrows its reliability from the method's track record.</p></div></details>
+      <details class="whatif"><summary>What if I really need "the probability that μ is below 150 g"? <span class="tag">what if</span></summary><div><p>A frequentist won't give you that number. What they can tell you is how surprising your data would be if <var>μ</var> were 150 (chapter 6), and which values of <var>μ</var> your data still allow (chapter 7). If you need a probability for <var>μ</var> itself, you need a prior belief about <var>μ</var> and the Bayesian route, as in the Bayesian mode of the pool table.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 3 -->
+<section class="ch" id="ch3">
+  <div class="ch-head"><h2><span class="num">3</span>The assumptions</h2></div>
+  <div class="prose">
+    <p>Working out a sampling distribution by algebra instead of by replaying requires a few assumptions. They are worth reading slowly, because every "95%" and "5%" later on is only as good as they are.</p>
+    <dl class="terms">
+      <dt>A1 · Fixed target</dt><dd>The average <var>μ</var> and the spread <var>σ</var> are unknown constants.</dd>
+      <dt>A2 · Random picking</dt><dd>Every orange has the same chance of being picked, and picks don't influence each other. In practice: number the trees and draw random numbers, rather than grabbing oranges from the trees nearest the road.</dd>
+      <dt>A3 · Bell-shaped averages</dt><dd>The <em>average</em> of the picked oranges follows a bell curve. This is exactly true, for any <var>n</var>, if individual weights are bell-shaped. If they aren't, it becomes approximately true as <var>n</var> grows, because averaging smooths out lopsidedness (the <strong>central limit theorem</strong>).</dd>
+      <dt>A4 · A stable orchard</dt><dd>Nothing changes between repetitions: no harvest, no storm, no new trees.</dd>
+    </dl>
+    <p class="takeaway">All the "95%" and "5%" guarantees below hold only if these assumptions hold.</p>
+    <p>The assumptions don't all fail in the same way:</p>
+    <div class="compare">
+      <div class="compare-item"><span class="compare-label">Shape (A3) · fails gracefully</span><span class="compare-value">If the weights are lopsided, a "95%" interval might really be 93%, or 90% for a small, strongly skewed sample. Weighing more oranges fixes it, because averages of more oranges are more bell-shaped.</span></div>
+      <div class="compare-item"><span class="compare-label">Picking (A2) and stability (A4) · fail badly</span><span class="compare-value">Roadside oranges might be systematically bigger. Then every average is off in the same direction, the guarantees mean nothing, and weighing more oranges doesn't help: you just get a more precise wrong answer.</span></div>
+    </div>
+    <p>The panel shows A3 at work. On the left are the weights of single oranges; on the right, averages of <var>n</var> oranges from 20,000 simulated picks. Every orchard shape has the same <var>μ</var> = 145 g and <var>σ</var> = 15 g; only the shape differs.</p>
+  </div>
+  <div class="lab">
+    <div class="lab-title">From orange weights to averages <span class="eyebrow">20,000 simulated repetitions per setting</span></div>
+    <div class="controls">
+      <div class="shape-pick"></div>
+      <label class="ctl">oranges per pick, n <input type="range" id="cltN" min="1" max="60" value="10"><output id="cltNo">10</output></label>
+    </div>
+    <canvas id="clt" aria-label="Population distribution and distribution of averages"></canvas>
+    <div class="readout">
+      <div><span>Skewness of the weights</span><b id="cltSkP">0.00</b></div>
+      <div><span>Skewness of the averages</span><b id="cltSkA">–</b></div>
+      <div><span>How often a "95%" interval actually covers μ</span><b id="cltCov">–</b></div>
+    </div>
+    <p class="hint">Skewness measures lopsidedness: 0 means symmetric like a bell curve, positive means a long tail of heavy oranges. The shape you pick here also applies to chapters 4 and 6.</p>
+  </div>
+  <div class="prose">
+    <p><strong>Things to try.</strong> Choose <strong>Skewed</strong> and set <var>n</var> to 1, 5, 10 and 40. The left curve never changes, but the averages lose their lopsidedness as <var>n</var> grows, and the real coverage of a "95%" interval climbs back toward 95%. <strong>Flat</strong> and <strong>Two-humped</strong> orchards are symmetric, so their averages look like a bell curve already at <var>n</var> ≈ 5.</p>
+    <div class="asides">
+      <details class="whatif why"><summary>How large is "large enough"? <span class="tag">why</span></summary><div><p>It depends on how lopsided the orchard is. For symmetric shapes a handful of oranges is plenty. For a strongly skewed orchard like the "Skewed" one here, 10 oranges give about 90% real coverage and 40 give about 93%. The often-quoted "30" is a rule of thumb, not a law; the panel lets you see the answer for each shape.</p></div></details>
+      <details class="whatif"><summary>What if my sample is small and clearly lopsided? <span class="tag">what if</span></summary><div><p>Plot the data first; lopsidedness is easy to see. Then weigh more oranges if you can, analyse the logarithm of the weights (which often makes skewed data symmetric), or use a method that doesn't lean on the bell curve, such as the bootstrap from the pool table with a larger sample.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 4 -->
+<section class="ch" id="ch4">
+  <div class="ch-head"><h2><span class="num">4</span>Estimators are random variables</h2></div>
+  <div class="prose">
+    <p>Here are the weights of our 10 oranges (made-up numbers for illustration):</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr mono" style="font-size:.95rem">118, 152, 131, 147, 139, 160, 124, 143, 155, 121 g</span></span></div>
+    <p>To estimate <var>μ</var> we use their average. Written as a recipe, this is the <strong>estimator</strong>:</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>Ȳ</var> = <span class="frac"><span>1</span><span><var>n</var></span></span> <span class="sum"><span class="lim">n</span><span class="sig">∑</span><span class="lim">i = 1</span></span> <var>Y</var><sub>i</sub></span></span><span class="eq-num">(2)</span></div>
+    <p>In words: add up the <var>n</var> weights and divide by <var>n</var>. The capital and lowercase letters carry a real distinction:</p>
+    <dl class="terms">
+      <dt><var>Y</var><sub>i</sub></dt><dd>the weight of the <var>i</var>-th orange <em>before</em> we pick it: it could turn out to be anything, so it is a random variable.</dd>
+      <dt><var>y</var><sub>i</sub></dt><dd>the same weight <em>after</em> weighing: a plain number, such as 118 g.</dd>
+      <dt><var>Ȳ</var></dt><dd>the <strong>estimator</strong>: the recipe applied to random variables, so itself random.</dd>
+      <dt><var>ȳ</var></dt><dd>the <strong>estimate</strong>: the recipe applied to our numbers, <var>ȳ</var> = 1390/10 = 139.0 g.</dd>
+    </dl>
+    <p class="takeaway">Our 139.0 g is one draw from the distribution of <var>Ȳ</var>. The panel below draws many more.</p>
+  </div>
+  <div class="lab">
+    <div class="lab-title">The sampling distribution, one repetition at a time</div>
+    <div class="controls">
+      <div class="shape-pick"></div>
+      <label class="ctl">n <input type="range" id="n4" min="2" max="100" value="10"><output id="n4o">10</output></label>
+      <label class="ctl">speed <input type="range" id="sp4" min="1" max="6" value="2" step="1"><output id="sp4o">2</output></label>
+    </div>
+    <canvas id="c4" aria-label="Orchard distribution, current sample, and histogram of averages"></canvas>
+    <div class="controls">
+      <button class="btn primary" id="p4">Pick once</button>
+      <button class="btn" id="play4">Play</button>
+      <button class="btn" id="k4">+1,000 instantly</button>
+      <button class="btn" id="real4">Show our real sample</button>
+      <button class="btn" id="r4">Reset</button>
+    </div>
+    <div class="readout">
+      <div><span>Repetitions</span><b id="s4N">0</b></div>
+      <div><span>Average of the averages</span><b id="s4M">–</b></div>
+      <div><span>Spread (SD) of the averages</span><b id="s4S">–</b></div>
+      <div><span>Predicted SE = σ/√n</span><b id="s4P">4.74 g</b></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>Each repetition drops <var>n</var> oranges out of the orchard (top row), averages them (middle row, white bar), and adds that average to the histogram (bottom row). Two things stand out: the averages centre on the true 145 g, and they are far less spread out than single oranges. Two short calculations explain both.</p>
+    <p><strong>The centre.</strong> On average, each orange weighs <var>μ</var>, so on average their mean does too:</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>E</var>[<var>Ȳ</var>] = <span class="frac"><span>1</span><span><var>n</var></span></span> <span class="sum"><span class="lim">n</span><span class="sig">∑</span><span class="lim">i = 1</span></span> <var>E</var>[<var>Y</var><sub>i</sub>] = <span class="frac"><span>1</span><span><var>n</var></span></span> · <var>n</var><var>μ</var> = <var>μ</var></span></span><span class="eq-num">(3a)</span></div>
+    <p>So <var>Ȳ</var> is <strong>unbiased</strong>: it doesn't systematically over- or under-shoot. Compare "Average of the averages" in the panel with 145 g.</p>
+    <p><strong>The spread.</strong> Two effects combine. First, <em>random errors partly cancel</em>: when you add two independent oranges, one is often heavy while the other is light, so the sum wobbles less than double. Two oranges that each wobble by 15 g give a sum that wobbles by √(15² + 15²) ≈ 21 g, not 30 g. Variances (squared spreads) are what simply add up, so the variance of a sum of <var>n</var> oranges is <var>n</var><var>σ</var>². Second, <em>dividing by <var>n</var></em> shrinks the variance by <var>n</var>², because variance is measured in squared grams: halve every weight and the spread in grams halves, but the spread in grams² quarters. Together:</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr">Var(<var>Ȳ</var>) = <span class="frac"><span>1</span><span><var>n</var>²</span></span> <span class="sum"><span class="lim">n</span><span class="sig">∑</span><span class="lim">i = 1</span></span> Var(<var>Y</var><sub>i</sub>) = <span class="frac"><span>1</span><span><var>n</var>²</span></span> · <var>n</var><var>σ</var>² = <span class="frac"><span><var>σ</var>²</span><span><var>n</var></span></span></span></span><span class="eq-num">(3b)</span></div>
+    <p>The spread of the averages, called the <strong>standard error</strong>, is the square root of (3b):</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr">SE(<var>Ȳ</var>) = <span class="frac"><span><var>σ</var></span><span>√<var>n</var></span></span></span></span><span class="eq-num">(4)</span></div>
+    <p>Neither calculation used the shape of the orchard; only the cancelling of independent errors. With <var>σ</var> = 15 g:</p>
+    <div class="compare">
+      <div class="compare-item"><span class="compare-label">10 oranges</span><span class="compare-value">SE = 15/√10 = 4.74 g</span></div>
+      <div class="compare-item win"><span class="compare-label">40 oranges</span><span class="compare-value">SE = 15/√40 = 2.37 g</span></div>
+    </div>
+    <p class="takeaway">The standard error shrinks with √<var>n</var>: to halve the uncertainty, you need four times as many oranges.</p>
+    <div class="asides">
+      <details class="whatif"><summary>What if the oranges come from only a few trees? <span class="tag">what if</span></summary><div><p>Oranges from the same tree are alike: same soil, same sunlight. They rise and fall together, so their errors cancel less, and the real standard error is larger than <var>σ</var>/√<var>n</var>. For example, 10 oranges from just 2 trees, with a moderate within-tree similarity (correlation 0.5), give a standard error about 1.7 times larger than formula (4) says. Intervals built with (4) would be too narrow. The fix is to sample many trees.</p></div></details>
+      <details class="whatif why"><summary>Why the average, and not the median? <span class="tag">why</span></summary><div><p>For bell-shaped data the average is the more precise of the two: the median wobbles about 25% more, so it needs roughly 57% more oranges to be as precise. For data with occasional wild values (a mislabelled 2 kg melon) the median wins, because one outlier can drag an average but barely moves a median. Being unbiased is not the only virtue; how much an estimator wobbles matters just as much.</p></div></details>
+    </div>
+    <h3>Estimating σ, and why we divide by n − 1</h3>
+    <p>Formula (4) needs <var>σ</var>, which we don't know, so we estimate it from the same 10 oranges:</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>S</var>² = <span class="frac"><span>1</span><span><var>n</var> − 1</span></span> <span class="sum"><span class="lim">n</span><span class="sig">∑</span><span class="lim">i = 1</span></span> (<var>Y</var><sub>i</sub> − <var>Ȳ</var>)²</span></span><span class="eq-num">(5)</span></div>
+    <p>In words: measure how far each orange is from the sample average, square those distances, add them up, and divide by <var>n</var> − 1. Why not divide by <var>n</var>, like a normal average?</p>
+    <p>Take just two oranges, 140 g and 150 g. Their average is 145, the deviations are −5 and +5, and the squared deviations add to 50. Now suppose the true <var>μ</var> is 150. Measured from the truth, the deviations are −10 and 0, which add to 100 in squares. The sample average is, by construction, the point that sits <em>closest</em> to the data, so distances measured from it always come out a little too small. On average they fall short by exactly one orange's worth of variance, and dividing by <var>n</var> − 1 instead of <var>n</var> makes up for precisely that.</p>
+    <p>There is a second way to see it. The deviations from the sample average always add up to zero (−5 and +5 above). So once you know 9 of our 10 deviations, the 10th is forced. Only <var>n</var> − 1 of them are free to vary, and that count is called the <strong>degrees of freedom</strong>. With a single orange there are no free deviations at all: formula (5) becomes 0/0, which is the honest answer, since one orange tells you nothing about how oranges vary.</p>
+    <p>For our oranges:</p>
+  </div>
+  <div class="tbl"><table id="devTable"></table></div>
+  <div class="prose">
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>s</var> = √<span class="paren">(</span><span class="frac"><span>2000</span><span>9</span></span><span class="paren">)</span> = 14.91 g,&nbsp;&nbsp;&nbsp; SÊ = <span class="frac"><span>14.91</span><span>√10</span></span> = 4.71 g</span></span></div>
+    <p>The hat on SÊ marks it as an <em>estimated</em> standard error: formula (4) with our <var>s</var> standing in for the unknown <var>σ</var>. This is the same move as the bootstrap at the pool table, where our estimate stood in for the hidden white ball.</p>
+    <div class="asides">
+      <details class="whatif why"><summary>If S² is unbiased, why does S still underestimate σ slightly? <span class="tag">why</span></summary><div><p>Because square roots bend. Suppose <var>S</var>² came out as 100 or 300 with equal chance: its average is 200, right on target. But <var>S</var> would be 10 or 17.3, whose average is 13.7, below √200 = 14.1. Averaging and then taking the root is not the same as taking roots and then averaging. The shortfall is small and shrinks as <var>n</var> grows, so in practice nobody corrects it; the <var>t</var> distribution in the next chapter already accounts for <var>S</var> being imperfect.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 5 -->
+<section class="ch" id="ch5">
+  <div class="ch-head"><h2><span class="num">5</span>How big is a miss? The standard error as a ruler</h2></div>
+  <div class="prose">
+    <p>Both of our questions come down to one comparison: our measured average, <var>ȳ</var> = 139.0 g, against some <strong>hypothetical</strong> value for the true mean, such as the grower's 150 g. If 150 g were the truth, our average would have missed it by 139.0 − 150 = −11 g.</p>
+    <p><strong>Is 11 g a lot? That depends on the oranges.</strong> Compare two imaginary orchards, each sampled with 10 oranges:</p>
+    <div class="compare">
+      <div class="compare-item"><span class="compare-label">Very uniform oranges, σ = 2 g</span><span class="compare-value">SE = 2/√10 = 0.63 g<br>an 11 g miss = 17.4 standard errors: practically impossible</span></div>
+      <div class="compare-item"><span class="compare-label">Very varied oranges, σ = 60 g</span><span class="compare-value">SE = 60/√10 = 19.0 g<br>an 11 g miss = 0.58 standard errors: completely ordinary</span></div>
+    </div>
+    <p>So grams are the wrong unit. The right ruler is <strong>how much an average of 10 oranges naturally wobbles from one repetition to the next</strong>: the standard error. For our oranges it is 4.71 g, and measured on that ruler our miss is</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><span class="frac"><span>−11.0 g</span><span>4.71 g</span></span> = −2.33 standard errors</span></span></div>
+    <p>Is a miss of 2.33 standard errors unusual? Imagine repeating the experiment many times, each time measuring the miss <var>ȳ</var> − <var>μ</var> in standard errors. The values pile up into a curve, and the numbers you see in every textbook, 1.96 and 2.262, are simply read off it: <strong>they are the fences that enclose the middle 95% of all repetitions.</strong> There are two versions of the curve, depending on which ruler we use.</p>
+    <dl class="terms">
+      <dt>True ruler, σ known</dt><dd>Every repetition uses the same ruler, <var>σ</var>/√<var>n</var>. The misses form the standard bell curve, and 95% of them land within ±1.96.</dd>
+      <dt>Estimated ruler, σ unknown</dt><dd>Every repetition measures its own ruler, <var>s</var>/√<var>n</var>, from its own 10 oranges. The misses form a slightly wider curve, <strong>Student's <var>t</var></strong>, and 95% land within ±2.262.</dd>
+    </dl>
+    <p>Why does estimating the ruler widen the curve? Sometimes the 10 oranges happen to be unusually similar, so <var>s</var> comes out too small and the ruler shrinks. Take a miss of 1.5 true standard errors, which is perfectly ordinary. Measured with a ruler at half its true length it reads as 3.0: it now looks extreme. Measured with a ruler at double length it reads as 0.75, but that miss was already inside the fences, so nothing changes. The errors don't cancel: <strong>rulers that are too short push ordinary misses out past the fences, and rulers that are too long can't pull anything back in.</strong> The tails get fatter, and the fence has to move out from 1.96 to 2.262. Use 1.96 anyway and about 8% of repetitions land outside instead of 5%.</p>
+    <h3>Why one curve fits every orchard</h3>
+    <p>Here is the step that makes all of this usable. Measure a miss in its own standard errors and the units cancel: a 3 g miss in an orchard with a 1 g standard error looks exactly like a 30 g miss in an orchard with a 10 g standard error. Write each orange as <var>μ</var> plus <var>σ</var> times a "standard orange"; then <var>μ</var> is subtracted away in the numerator and <var>σ</var> cancels between numerator and denominator. Neither survives. A quantity like this, whose curve is known even though the truth isn't, is called a <strong>pivot</strong>. That is why the cut-offs can be computed once and printed in tables: an orchard of 80 g oranges with a 3 g spread gives exactly the same 2.262.</p>
+    <p>One thing does survive the division: the <em>shape</em> of the orchard. For bell-shaped weights the curve is exactly Student's <var>t</var>. For a lopsided orchard it is a slightly different curve, which is the chapter 3 warning showing up again.</p>
+    <h3>The formulas</h3>
+    <p><strong>Step 1: the ruler.</strong> Our estimated standard error, from equation (5):</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr">SÊ = <span class="frac"><span><var>s</var></span><span>√<var>n</var></span></span> = <span class="frac"><span>14.91</span><span>√10</span></span> = 4.71 g</span></span><span class="eq-num">(6)</span></div>
+    <p><strong>Step 2: the miss in true standard errors.</strong> If <var>σ</var> were known, the miss from the true mean would follow the standard bell curve, written 𝒩(0, 1) (centre 0, spread 1), whose height at <var>z</var> is <var>φ</var>(<var>z</var>):</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>Z</var> = <span class="frac"><span><var>Ȳ</var> − <var>μ</var></span><span><var>σ</var>/√<var>n</var></span></span> ∼ 𝒩(0, 1),&nbsp;&nbsp; <var>φ</var>(<var>z</var>) = <span class="frac"><span>1</span><span>√(2π)</span></span> <var>e</var><sup>−z²/2</sup></span></span><span class="eq-num">(7)</span></div>
+    <p>The fence <var>c</var> is where the area under the curve between −<var>c</var> and <var>c</var> reaches 95%:</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><span class="sum"><span class="lim">c</span><span class="sig">∫</span><span class="lim">−c</span></span> <var>φ</var>(<var>z</var>) d<var>z</var> = 0.95 &nbsp;⇒&nbsp; <var>c</var> = 1.96</span></span></div>
+    <p><strong>Step 3: the miss in estimated standard errors.</strong> Replacing <var>σ</var> by our estimate <var>S</var>:</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>T</var> = <span class="frac"><span><var>Ȳ</var> − <var>μ</var></span><span><var>S</var>/√<var>n</var></span></span> ∼ <var>t</var><sub>n−1</sub></span></span><span class="eq-num">(8)</span></div>
+    <p>The subscript <var>n</var> − 1 = 9 is the degrees of freedom from chapter 4: the ruler <var>S</var> rests on 9 free deviations. The same area rule on this curve gives</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><span class="sum"><span class="lim">c</span><span class="sig">∫</span><span class="lim">−c</span></span> <var>f</var><sub>t₉</sub>(<var>t</var>) d<var>t</var> = 0.95 &nbsp;⇒&nbsp; <var>c</var> = 2.262</span></span></div>
+    <p>The fewer oranges, the shakier the ruler and the wider the curve. As <var>n</var> grows, <var>s</var> becomes reliable and the fence approaches 1.96:</p>
+  </div>
+  <div class="tbl"><table id="cutTable"></table></div>
+  <div class="prose">
+    <p><strong>Step 4: our sample.</strong> Equation (8) is about the <em>true</em> <var>μ</var>, which we don't know. So we ask a "what if" instead: <em>if</em> the truth were <var>μ</var><sub>0</sub>, how big would our miss be on this ruler?</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>t</var> = <span class="frac"><span><var>ȳ</var> − <var>μ</var><sub>0</sub></span><span>SÊ</span></span> = <span class="frac"><span>139.0 − 150</span><span>4.71</span></span> = −2.33</span></span></div>
+    <p>If 150 g were the truth, this <var>t</var> would be one draw from the <var>t</var><sub>9</sub> curve. The two decision tools both use this ruler and this curve; they only ask different questions of it.</p>
+    <div class="compare">
+      <div class="compare-item"><span class="compare-label">Hypothesis test · chapter 6</span><span class="compare-value">Tries <strong>one</strong> hypothetical mean, 150 g, and asks: would −2.33 be an unusual draw from the curve?</span></div>
+      <div class="compare-item"><span class="compare-label">Confidence interval · chapter 7</span><span class="compare-value">Tries <strong>every</strong> hypothetical mean, and keeps those for which our miss stays within ±2.262.</span></div>
+    </div>
+    <div class="asides">
+      <details class="whatif why"><summary>Why 95%, and not 90% or 99%? <span class="tag">why</span></summary><div><p>It is a convention, "1 in 20", not a law of nature. Higher confidence means wider fences: a 99% fence for 10 oranges sits at ±3.25 instead of ±2.262, so intervals get wider and tests get more cautious. Fields choose differently: particle physicists demand "5 sigma", roughly a 1 in 3.5 million chance of a false alarm, before announcing a discovery.</p></div></details>
+      <details class="whatif why"><summary>How is a number like 2.262 actually found? <span class="tag">why</span></summary><div><p>The area under the curve has no simple formula, so it is found by trial and error. Guess a fence; if the area inside is less than 95%, move it out, if more, move it in, halving the step each time. For the bell curve: a fence at 2 encloses 95.4%, at 1.9 it encloses 94.3%, and a dozen halvings home in on 1.96. Statistical tables and software, including this page, do exactly that.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 6 -->
+<section class="ch" id="ch6">
+  <div class="ch-head"><h2><span class="num">6</span>Decision tool 1: the hypothesis test</h2></div>
+  <div class="prose">
+    <p><strong>Question 2:</strong> is the average below 150 g? A test is a careful way of asking "would our data be surprising if the grower were right?" It has four ingredients:</p>
+    <dl class="terms">
+      <dt><var>H</var><sub>0</sub>: <var>μ</var> = 150 g</dt><dd>the <strong>null hypothesis</strong>, the grower's claim. We assume it is true and look for evidence against it, like "innocent until proven guilty".</dd>
+      <dt><var>H</var><sub>1</sub>: <var>μ</var> &lt; 150 g</dt><dd>the <strong>alternative</strong>, what we suspect instead. It decides which direction counts as suspicious, and it must be chosen <em>before</em> looking at the data.</dd>
+      <dt><var>α</var> = 0.05</dt><dd>the <strong>significance level</strong>, also fixed in advance: how often we are willing to wrongly reject a true <var>H</var><sub>0</sub>.</dd>
+      <dt><var>p</var></dt><dd>the <strong>p-value</strong>: in repetitions where <var>H</var><sub>0</sub> is true, the share that give a result at least as suspicious as ours.</dd>
+    </dl>
+    <p>Why "at least as suspicious" and not just "exactly ours"? Because every exact result is rare. Toss a fair coin 100 times and exactly 50 heads, the most typical result there is, happens only 8% of the time. Rarity of the exact outcome can't be the yardstick. The useful question is: how often would chance alone produce something this far from the claim, or further, in the suspicious direction? That share is also exactly the false-alarm rate of the rule "reject whenever the result is this bad or worse".</p>
+    <p>If <var>H</var><sub>0</sub> is true, equation (8) with <var>μ</var> = 150 says <var>T</var> follows the <var>t</var><sub>9</sub> curve. We observed <var>t</var> = −2.33. Since <var>H</var><sub>1</sub> says "lower", only results further to the left count as more suspicious:</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>p</var> = <var>P</var>(<var>t</var><sub>9</sub> ≤ −2.33) = 0.022 &nbsp;≤&nbsp; <var>α</var> = 0.05 &nbsp;⇒&nbsp; reject <var>H</var><sub>0</sub></span></span></div>
+    <p>The steps are computed live below from the data in the box, which you can edit. Change <var>μ</var><sub>0</sub>, the alternative or <var>α</var> and watch the shaded areas move.</p>
+  </div>
+  <div class="lab">
+    <div class="lab-title">One-sample t-test</div>
+    <label class="ctl" style="flex-direction:column;align-items:stretch;gap:6px">Your oranges (grams, separated by commas or spaces)
+      <input type="text" id="data6" value="118, 152, 131, 147, 139, 160, 124, 143, 155, 121">
+    </label>
+    <span class="err" id="err6"></span>
+    <div class="controls">
+      <label class="ctl">μ₀ (claim) <input type="range" id="mu0" min="120" max="170" step="0.5" value="150"><output id="mu0o">150</output></label>
+      <label class="ctl">H₁ <select id="alt6"><option value="less">μ &lt; μ₀ (our question)</option><option value="two">μ ≠ μ₀</option><option value="greater">μ &gt; μ₀</option></select></label>
+      <label class="ctl">α <select id="alpha6"><option>0.10</option><option selected>0.05</option><option>0.01</option></select></label>
+    </div>
+    <div class="two wide-left">
+      <div><canvas id="c6" aria-label="t distribution with p-value shaded"></canvas>
+        <div class="legend" style="margin-top:8px"><span><i class="bar" style="background:#f5f2e7"></i>Student t, n − 1 degrees of freedom</span><span><i class="bar" style="background:#c9cfc3;opacity:.6"></i>standard normal, for comparison</span><span><i class="bar" style="background:#8fd3a8"></i>p-value area</span></div></div>
+      <div class="explain" id="steps6"></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p class="takeaway">If the grower were right, a sample of 10 oranges would come out as low as ours, 2.33 estimated standard errors below 150 g or lower, in only about 2.2% of repetitions.</p>
+    <p>That is all a p-value says. It is <strong>not</strong> the probability that the grower is right: his claim is either true or false, and a frequentist puts no probability on it. At the pool table, only the Bayesian mode could put a probability on a statement about the ball.</p>
+    <div class="asides">
+      <details class="whatif"><summary>What if I choose the direction after seeing ȳ = 139? <span class="tag">what if</span></summary><div><p>Then you have quietly doubled your false-alarm rate. Whichever way the average falls, you would pick that side, so both tails count, and our 0.022 really means 0.044. That is why the direction belongs in the plan, written down before the oranges are weighed. If you have no strong reason to expect one direction, use the two-sided test.</p></div></details>
+      <details class="whatif"><summary>What if p comes out at 0.051 instead of 0.049? <span class="tag">what if</span></summary><div><p>Those two results carry practically the same evidence. The 0.05 line exists for making yes-or-no decisions with a known error rate, not for measuring evidence. Report the p-value itself, and the interval of chapter 7, rather than only "significant" or "not significant".</p></div></details>
+      <details class="whatif"><summary>What if we weighed 10,000 oranges? <span class="tag">what if</span></summary><div><p>The standard error drops to 15/√10,000 = 0.15 g, so even a 0.5 g shortfall gives <var>t</var> ≈ −3.3 and a "significant" result. Significant only means "detectably different from 150 g". Whether half a gram matters is a question about oranges, not statistics. The interval, here about 149.2 to 149.8 g, shows at a glance how small the difference is.</p></div></details>
+    </div>
+    <h3>Two ways to be wrong</h3>
+    <div class="compare">
+      <div class="compare-item"><span class="compare-label">Type I error · a false alarm</span><span class="compare-value">Rejecting the grower's claim when it is true. With one planned test and bell-shaped weights, this happens in exactly <var>α</var> = 5% of repetitions: that is what choosing <var>α</var> means.</span></div>
+      <div class="compare-item"><span class="compare-label">Type II error · a missed difference</span><span class="compare-value">Failing to reject when the average really is lower. How often this happens depends on the sample size and on how big the shortfall is. One minus this rate is the test's <strong>power</strong>.</span></div>
+    </div>
+    <p>The panel below measures power directly: it runs thousands of imagined experiments with a true average of your choice and counts how often the test rejects.</p>
+  </div>
+  <div class="lab">
+    <div class="lab-title">How often does the test catch a real difference? <span class="eyebrow">uses μ₀, H₁ and α from above, and the orchard shape</span></div>
+    <div class="controls">
+      <div class="shape-pick"></div>
+      <label class="ctl">true μ <input type="range" id="muT" min="130" max="165" step="0.5" value="145"><output id="muTo">145</output></label>
+      <label class="ctl">n <input type="range" id="nP" min="2" max="150" value="10"><output id="nPo">10</output></label>
+    </div>
+    <canvas id="cP" aria-label="Rejection rate against number of oranges"></canvas>
+    <div class="explain" id="powTxt"></div>
+  </div>
+  <div class="prose">
+    <p>With a true average of 145 g, the test catches the 5 g shortfall only about 25% of the time with 10 oranges, 67% with 40 and 95% with 100. In other words, our 10-orange experiment was likely to miss a real difference of that size. A well-planned study sets <var>n</var> in advance so that power is high enough; catching a 5 g shortfall 80% of the time takes about 55 to 60 oranges.</p>
+    <p>Set the true <var>μ</var> equal to <var>μ</var><sub>0</sub> and the curve flattens at <var>α</var>: every rejection is now a false alarm, and they happen at the promised 5%. Switch to the <strong>Skewed</strong> orchard and, at small <var>n</var>, the false-alarm rate rises above 5%, because the bell-curve assumption is strained.</p>
+    <p class="takeaway">Not rejecting the claim does not show that the claim is true. It may only mean the experiment was too small to see the difference.</p>
+    <p>With 10 oranges and a true average of 145 g, this test stays silent three times out of four. "Not rejected" means "the data are compatible with 150 g", but they are also compatible with many other values. Chapter 7's interval shows how many.</p>
+  </div>
+</section>
+
+<!-- ============================================================ 7 -->
+<section class="ch" id="ch7">
+  <div class="ch-head"><h2><span class="num">7</span>Decision tool 2: the confidence interval</h2></div>
+  <div class="prose">
+    <p><strong>Question 1:</strong> how heavy is the average orange? Instead of a single guess, give a range, built by a recipe that catches the true average 95% of the time. Formally, a 95% confidence interval is a recipe for two endpoints <var>L</var> and <var>U</var>, computed from the oranges, such that whatever <var>μ</var> is,</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>P</var><sub>μ</sub>(<var>L</var> ≤ <var>μ</var> ≤ <var>U</var>) = 0.95</span></span></div>
+    <p>We get it from chapter 5's curve in three steps. <strong>Start</strong> from the fact that 95% of all repetitions have their miss within ±2.262 standard errors:</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>P</var><span class="paren">(</span>−2.262 ≤ <span class="frac"><span><var>Ȳ</var> − <var>μ</var></span><span><var>S</var>/√<var>n</var></span></span> ≤ 2.262<span class="paren">)</span> = 0.95</span></span></div>
+    <p><strong>Multiply</strong> all three parts by the positive number <var>S</var>/√<var>n</var>, turning standard errors back into grams:</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>P</var><span class="paren">(</span>−2.262 · <span class="frac"><span><var>S</var></span><span>√<var>n</var></span></span> ≤ <var>Ȳ</var> − <var>μ</var> ≤ 2.262 · <span class="frac"><span><var>S</var></span><span>√<var>n</var></span></span><span class="paren">)</span> = 0.95</span></span></div>
+    <p><strong>Rearrange</strong> so that <var>μ</var> stands alone in the middle:</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr"><var>P</var><span class="paren">(</span><var>Ȳ</var> − 2.262 · <span class="frac"><span><var>S</var></span><span>√<var>n</var></span></span> ≤ <var>μ</var> ≤ <var>Ȳ</var> + 2.262 · <span class="frac"><span><var>S</var></span><span>√<var>n</var></span></span><span class="paren">)</span> = 0.95</span></span><span class="eq-num">(9)</span></div>
+    <p>In words: "the average lands within 2.262 standard errors of <var>μ</var>" and "<var>μ</var> lies within 2.262 standard errors of the average" are the same event, said from opposite ends. Because <var>T</var> is a pivot, that event has a 95% chance whatever <var>μ</var> is, which is how one recipe can work for every possible orchard. For our oranges:</p>
+    <div class="eq"><span class="eq-body"><span class="eq-expr">139.0 ± 2.262 · 4.714 = 139.0 ± 10.7 &nbsp;⇒&nbsp; [128.3 g, 149.7 g]</span></span></div>
+    <p id="ourCI"></p>
+    <h3>The interval is a list of acceptable claims</h3>
+    <p>There is a second, very practical way to read the interval: it contains exactly the claims a two-sided test at the 5% level would <em>not</em> reject. Try two:</p>
+    <div class="compare">
+      <div class="compare-item"><span class="compare-label">Claim: 149 g</span><span class="compare-value"><var>t</var> = (139 − 149)/4.71 = −2.12, inside ±2.262. Not rejected, so 149 is in the interval.</span></div>
+      <div class="compare-item"><span class="compare-label">Claim: 150 g</span><span class="compare-value"><var>t</var> = −2.33, outside ±2.262. Rejected (two-sided <var>p</var> = 0.045), so 150 is just outside.</span></div>
+    </div>
+    <p>So a test answers "is this one value plausible?" and the interval answers "which values are plausible?". The interval tells you more.</p>
+  </div>
+  <div class="wr">
+    <div class="w"><b>✗ Wrong:</b> "There is a 95% probability that <var>μ</var> lies between 128.3 g and 149.7 g."</div>
+    <div class="r"><b>✓ Right:</b> "This interval comes from a method that catches the true average in 95% of repetitions."</div>
+  </div>
+  <div class="prose">
+    <p>Once computed, the interval is two fixed numbers, and <var>μ</var> is a fixed number: <var>μ</var> is either inside or it isn't, and we can't tell which. Think of ring toss. The peg (<var>μ</var>) stands still and you throw rings (intervals) at it. A good thrower rings the peg 95% of the time, but after one throw, with your eyes closed, all you can say about that ring is that it came from a good thrower.</p>
+    <p class="takeaway">The 95% describes the thrower, not any single ring.</p>
+    <p>The pool table's frequentist band works on the same principle. There the spread came from replaying the balls at our estimate; here it comes from a formula, with our <var>s</var> standing in for <var>σ</var>. The 2.262 instead of 1.96 is the orchard's built-in allowance for that stand-in. The simple bootstrap at the pool table has no such allowance, which is why it becomes overconfident with very few balls.</p>
+    <div class="asides">
+      <details class="whatif"><summary>What if the one-sided test rejects 150 g, but the interval contains it? <span class="tag">what if</span></summary><div><p>That happens when <var>t</var> lands between −2.262 and −1.833, say at −2.0. It is not a contradiction: the one-sided test spends its whole 5% on one side, while the two-sided interval splits it 2.5% per side. The matching tool for a one-sided test is a one-sided bound: here, <var>μ</var> ≤ 139.0 + 1.833 · 4.71 = 147.6 g, which excludes 150.</p></div></details>
+      <details class="whatif"><summary>What if all ten oranges weighed exactly the same? <span class="tag">what if</span></summary><div><p>Then <var>s</var> = 0, the standard error is 0, and the interval shrinks to a single point. That is not certainty; real oranges never weigh exactly the same, so it is a sign that the scale rounds too coarsely or that something else is wrong with the data. Check the measurements before trusting any formula.</p></div></details>
+    </div>
+    <h3>The same logic elsewhere</h3>
+    <p>Medical studies use identical reasoning with a different measure. The <strong>odds</strong> of an illness are the chance of having it divided by the chance of not having it; the <strong>odds ratio</strong> divides one group's odds by another's, so an odds ratio of 1 means "no difference between the groups". Suppose a study of drinkers and non-drinkers reports a 95% interval of 1.14 to 2.92 for the odds ratio of diabetes. The interval excludes 1, so "no association" is rejected at the 5% level. Like every result on this page, that shows an association, not that drinking causes diabetes.</p>
+  </div>
+</section>
+
+<!-- ============================================================ 8 -->
+<section class="ch" id="ch8">
+  <div class="ch-head"><h2><span class="num">8</span>Strengths and limitations</h2></div>
+  <div class="prose">
+    <div class="compare">
+      <div class="compare-item win"><span class="compare-label">Strengths</span><span class="compare-value">Clear decisions with known long-run error rates. No prior beliefs needed. A shared standard that anyone can check and repeat.</span></div>
+      <div class="compare-item"><span class="compare-label">Weak spot</span><span class="compare-value">Every guarantee belongs to a <strong>procedure</strong>, planned in advance. Change the procedure and the guarantees change, even if the numbers on the page look the same.</span></div>
+    </div>
+    <p>Here is that weak spot in action. Imagine an impatient inspector. Instead of weighing 10 oranges and testing once, she weighs them one at a time, and after every orange (from the second onward) she runs chapter 6's test: "is the average below 150 g?", at <var>α</var> = 0.05. The moment the p-value dips below 0.05, she stops and declares the grower guilty.</p>
+    <p>In the simulation, every grower is <strong>honest</strong>: his oranges really do average 150 g, so the claim is true. Any accusation is therefore a <strong>false alarm</strong>, a Type I error. With a single planned test, exactly 5% of honest growers would be accused. Watch what peeking does.</p>
+  </div>
+  <div class="lab">
+    <div class="lab-title">Peeking at the p-value after every orange <span class="eyebrow">honest growers: the true average really is 150 g</span></div>
+    <div class="controls">
+      <label class="ctl">give up after <input type="range" id="max8" min="5" max="200" value="100"><output id="max8o">100</output> oranges</label>
+    </div>
+    <canvas id="c8" aria-label="p-value paths as oranges are added"></canvas>
+    <div class="controls">
+      <button class="btn primary" id="s8one">Inspect 1 grower</button>
+      <button class="btn" id="play8">Play</button>
+      <button class="btn" id="s8k">+500 growers</button>
+      <button class="btn" id="r8">Reset</button>
+      <span class="legend"><span><i class="bar" style="background:#ef7a66"></i>falsely accused</span><span><i class="bar" style="background:#c9cfc3"></i>never crossed 0.05</span></span>
+    </div>
+    <div class="readout">
+      <div><span>Honest growers inspected</span><b id="g8N">0</b></div>
+      <div><span>Falsely accused, peeking</span><b id="g8P">–</b></div>
+      <div><span>Falsely accused, one test at the end</span><b id="g8F">–</b></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>Each line in the chart is one inspection: the p-value recomputed after every new orange. Notice that it doesn't settle down. It drifts up and down as oranges arrive, and over a long inspection it is quite likely to dip below 0.05 at some point, purely by chance. The inspector stops at the first dip, so she never sees it drift back up.</p>
+    <p>Every peek is another 5% lottery ticket. The tickets aren't independent, because consecutive peeks share almost all of their oranges, so 99 peeks don't give a 99% false-alarm rate. But they add up to roughly 30% for 100 oranges, and the longer the inspector is willing to keep weighing, the higher it climbs. With unlimited patience, a false accusation becomes practically certain.</p>
+    <p class="takeaway">The data on the page can look exactly the same. Only the procedure changed, and with it the error rate. This is one form of p-hacking.</p>
+    <p>Why should the inspector's <em>plan</em> matter, when the oranges are the same? Because the 5% guarantee is a property of the rule, not of the data. "Weigh 10, test once" and "test after every orange, stop at the first p &lt; 0.05" are different rules with different track records. The fix is not to stop looking, but to look honestly: fix the sample size in advance, or use a design built for repeated looks, which sets a stricter threshold for each peek. For example, with five planned looks, testing each at about 0.016 keeps the overall false-alarm rate near 5%.</p>
+    <p>Two further criticisms come up often. Squeezing every question into yes-or-no hides information: "significant" lumps a 0.5 g shortfall together with a 20 g one, and splits p = 0.049 from p = 0.051 although they say the same thing. Reporting the estimate and its interval keeps what a bare verdict throws away. And p-values and confidence intervals are easy to misread, as the "wrong" statement in chapter 7 shows.</p>
+  </div>
+</section>
+
+<!-- ============================================================ 9 -->
+<section class="ch" id="ch9">
+  <div class="ch-head"><h2><span class="num">9</span>The bigger picture</h2></div>
+  <div class="prose">
+    <p>The orchard walked through the whole frequentist recipe:</p>
+    <div class="flow" aria-label="The frequentist recipe as a sequence of steps">
+      <span class="flow-node">Fixed parameter <var>μ</var></span><span class="flow-edge">model</span>
+      <span class="flow-node">Estimator <var>Ȳ</var></span><span class="flow-edge">imagine repetitions</span>
+      <span class="flow-node">Sampling distribution</span><span class="flow-edge">standardise</span>
+      <span class="flow-node">Pivot <var>T</var> ∼ <var>t</var><sub>n−1</sub></span><span class="flow-edge">use</span>
+      <span class="flow-node">Test or interval</span><span class="flow-edge">act</span>
+      <span class="flow-node flow-node--last">Decision with a known error rate</span>
+    </div>
+    <p>Treat the unknown as a <strong>fixed parameter</strong> (chapter 1). Write down a <strong>model</strong> for how the data arise, with its assumptions (chapter 3). Choose an <strong>estimator</strong> and work out its <strong>sampling distribution</strong> over imagined repetitions (chapters 2 and 4). Measure misses on the standard-error ruler to get a <strong>pivot</strong>, whose curve doesn't depend on the unknowns (chapter 5). Use it for a <strong>test</strong> or a <strong>confidence interval</strong> (chapters 6 and 7), and <strong>decide</strong>, knowing how often that rule would be wrong, provided you follow it as planned (chapter 8).</p>
+    <p class="takeaway">We treat the truth as fixed, imagine repeating our experiment over and over, and trust a conclusion only as much as the procedure that produced it would be right in the long run.</p>
+    <div class="asides">
+      <details class="whatif why"><summary>But my conclusion is about this one orchard. Why should a long-run rate reassure me? <span class="tag">why</span></summary><div><p>Because it is the only kind of reliability that can be checked without knowing the answer. "I used a procedure that is right 95% of the time" is a claim anyone can test by simulation, as this page does, and anyone can repeat. The frequentist's honesty is in not claiming to know more about this particular orchard than the method's track record allows.</p></div></details>
+      <details class="whatif why"><summary>If neither view is wrong, why do Bayesian and frequentist answers sometimes differ? <span class="tag">why</span></summary><div><p>They answer different questions. The Bayesian asks "given what I saw, how sure should I be about <var>μ</var>?" The frequentist asks "how often would my method mislead me?" With plenty of data and a mild prior, the numbers nearly agree, as the pool table shows once you roll 100 balls. They part ways with small samples, with extreme results such as every ball on one side, and with strong prior beliefs.</p></div></details>
+      <details class="whatif"><summary>When would I choose the Bayesian route instead? <span class="tag">what if</span></summary><div><p>When you have real prior knowledge worth using (last season's orange weights, say), when a decision needs a probability for the unknown itself ("how likely is it that the average is below 150 g?"), or when data arrive continuously and you want to update as you go. Choose the frequentist route when you want guarantees that don't depend on anyone's prior beliefs.</p></div></details>
+    </div>
+  </div>
+</section>
+</main>
+<footer>All simulations run in your browser. The “true” values μ = 145 g and σ = 15 g are known only to the simulator, which plays nature.</footer>
+<script src="app.js"></script>
+</body>
+</html>

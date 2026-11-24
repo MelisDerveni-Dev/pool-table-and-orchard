@@ -1,0 +1,57 @@
+<template>
+<style>
+#root{position:absolute;inset:0;overflow:hidden;color:#f5f2e7;font-family:'Inter',sans-serif;
+  background:radial-gradient(1500px 760px at 18% -4%,rgba(60,140,108,.42),transparent 62%),linear-gradient(165deg,#134232 0%,#0b2c21 58%,#082119 100%)}
+#ch6-c{position:absolute;inset:0}
+.tag{position:absolute;left:132px;top:96px;font:500 28px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#d9a44a}
+.ttl{position:absolute;left:130px;top:132px;font:600 66px 'EB Garamond',serif;letter-spacing:-.01em;color:#f5f2e7;white-space:nowrap}
+.abs{position:absolute}
+.lbl{font:500 30px 'Inter',sans-serif;color:#c9cfc3}
+.mono{font-family:'IBM Plex Mono',monospace}
+.serif{font-family:'EB Garamond',serif}
+.card{position:absolute;background:rgba(245,242,231,.06);border:1px solid rgba(245,242,231,.18);border-radius:12px}
+.chip{position:absolute;border-radius:999px;padding:12px 26px;font:600 30px 'Inter',sans-serif;white-space:nowrap}
+svg{position:absolute;overflow:visible}
+svg text{font-family:'IBM Plex Mono',monospace}
+</style>
+<div id="root" data-composition-id="ch6" data-width="1920" data-height="1080">
+<div id="ch6-c" data-layout-allow-overlap>
+<div id="ch6-tag" class="tag">Chapter 6</div><div id="ch6-ttl" class="ttl">The hypothesis test</div><div id="ch6-h0" class="card" style="left:130px;top:280px;width:700px;height:120px;padding:28px 34px;font:600 44px Inter"><span class="serif" style="font-style:italic;font-size:52px">H₀</span> : μ = 150 g <span style="font-weight:400;color:#c9cfc3;font-size:30px">(grower is right)</span></div><div id="ch6-ask" class="abs serif" style="left:890px;top:298px;font-size:54px;font-style:italic;color:#f3d9a8">Would our data be surprising?</div><svg id="ch6-crv" width="1920" height="1080" style="left:0;top:0">
+    <rect id="ch6-rej" x="200" y="470" width="450.4" height="430" fill="rgba(224,96,79,.14)"/>
+    <text id="ch6-rejt" x="214" y="504" fill="#f3a69b" font-size="28">reject if t &lt; −1.833 (α = 0.05)</text>
+    <line x1="200" y1="900" x2="1720" y2="900" stroke="rgba(245,242,231,.16)" stroke-width="2"/>
+    <text x="284.44444444444446" y="936" fill="#c9cfc3" font-size="28" text-anchor="middle">−4</text><text x="453.3333333333333" y="936" fill="#c9cfc3" font-size="28" text-anchor="middle">−3</text><text x="622.2222222222222" y="936" fill="#c9cfc3" font-size="28" text-anchor="middle">−2</text><text x="791.1111111111111" y="936" fill="#c9cfc3" font-size="28" text-anchor="middle">−1</text><text x="960" y="936" fill="#c9cfc3" font-size="28" text-anchor="middle">0</text><text x="1128.888888888889" y="936" fill="#c9cfc3" font-size="28" text-anchor="middle">1</text><text x="1297.7777777777778" y="936" fill="#c9cfc3" font-size="28" text-anchor="middle">2</text><text x="1466.6666666666667" y="936" fill="#c9cfc3" font-size="28" text-anchor="middle">3</text><text x="1635.5555555555554" y="936" fill="#c9cfc3" font-size="28" text-anchor="middle">4</text>
+    <path id="ch6-tail" d="M200.0,898.9L202.3,898.9L204.6,898.9L206.9,898.8L209.2,898.8L211.5,898.8L213.7,898.8L216.0,898.7L218.3,898.7L220.6,898.7L222.9,898.6L225.2,898.6L227.5,898.6L229.8,898.6L232.1,898.5L234.4,898.5L236.6,898.5L238.9,898.4L241.2,898.4L243.5,898.4L245.8,898.3L248.1,898.3L250.4,898.3L252.7,898.2L255.0,898.2L257.3,898.1L259.6,898.1L261.8,898.1L264.1,898.0L266.4,898.0L268.7,897.9L271.0,897.9L273.3,897.8L275.6,897.8L277.9,897.7L280.2,897.7L282.5,897.6L284.8,897.6L287.0,897.5L289.3,897.5L291.6,897.4L293.9,897.4L296.2,897.3L298.5,897.3L300.8,897.2L303.1,897.1L305.4,897.1L307.7,897.0L309.9,896.9L312.2,896.9L314.5,896.8L316.8,896.7L319.1,896.7L321.4,896.6L323.7,896.5L326.0,896.4L328.3,896.3L330.6,896.3L332.9,896.2L335.1,896.1L337.4,896.0L339.7,895.9L342.0,895.8L344.3,895.7L346.6,895.6L348.9,895.5L351.2,895.4L353.5,895.3L355.8,895.2L358.0,895.1L360.3,895.0L362.6,894.9L364.9,894.8L367.2,894.7L369.5,894.6L371.8,894.4L374.1,894.3L376.4,894.2L378.7,894.0L381.0,893.9L383.2,893.8L385.5,893.6L387.8,893.5L390.1,893.3L392.4,893.2L394.7,893.0L397.0,892.9L399.3,892.7L401.6,892.5L403.9,892.4L406.1,892.2L408.4,892.0L410.7,891.8L413.0,891.7L415.3,891.5L417.6,891.3L419.9,891.1L422.2,890.9L424.5,890.7L426.8,890.4L429.1,890.2L431.3,890.0L433.6,889.8L435.9,889.5L438.2,889.3L440.5,889.1L442.8,888.8L445.1,888.6L447.4,888.3L449.7,888.0L452.0,887.8L454.3,887.5L456.5,887.2L458.8,886.9L461.1,886.6L463.4,886.3L465.7,886.0L468.0,885.7L470.3,885.3L472.6,885.0L474.9,884.6L477.2,884.3L479.4,883.9L481.7,883.6L484.0,883.2L486.3,882.8L488.6,882.4L490.9,882.0L493.2,881.6L495.5,881.2L497.8,880.8L500.1,880.3L502.4,879.9L504.6,879.4L506.9,879.0L509.2,878.5L511.5,878.0L513.8,877.5L516.1,877.0L518.4,876.5L520.7,875.9L523.0,875.4L525.3,874.8L527.5,874.3L529.8,873.7L532.1,873.1L534.4,872.5L536.7,871.9L539.0,871.2L541.3,870.6L543.6,869.9L545.9,869.2L548.2,868.5L550.5,867.8L552.7,867.1L555.0,866.4L557.3,865.6L559.6,864.9L561.9,864.1L564.2,863.3L566.5,862.5L566.5,900.0L200.0,900.0Z" fill="#8fd3a8"/>
+    <path d="M200.0,898.9L206.3,898.8L212.7,898.8L219.0,898.7L225.3,898.6L231.7,898.5L238.0,898.4L244.3,898.4L250.7,898.3L257.0,898.1L263.3,898.0L269.7,897.9L276.0,897.8L282.3,897.6L288.7,897.5L295.0,897.3L301.3,897.2L307.7,897.0L314.0,896.8L320.3,896.6L326.7,896.4L333.0,896.2L339.3,895.9L345.7,895.7L352.0,895.4L358.3,895.1L364.7,894.8L371.0,894.5L377.3,894.1L383.7,893.7L390.0,893.3L396.3,892.9L402.7,892.5L409.0,892.0L415.3,891.5L421.7,890.9L428.0,890.3L434.3,889.7L440.7,889.0L447.0,888.3L453.3,887.6L459.7,886.8L466.0,885.9L472.3,885.0L478.7,884.1L485.0,883.0L491.3,881.9L497.7,880.8L504.0,879.5L510.3,878.2L516.7,876.8L523.0,875.4L529.3,873.8L535.7,872.1L542.0,870.4L548.3,868.5L554.7,866.5L561.0,864.4L567.3,862.2L573.7,859.8L580.0,857.3L586.3,854.7L592.7,851.9L599.0,849.0L605.3,845.9L611.7,842.6L618.0,839.2L624.3,835.6L630.7,831.8L637.0,827.8L643.3,823.6L649.7,819.2L656.0,814.6L662.3,809.8L668.7,804.8L675.0,799.5L681.3,794.0L687.7,788.3L694.0,782.4L700.3,776.2L706.7,769.8L713.0,763.2L719.3,756.4L725.7,749.3L732.0,742.0L738.3,734.5L744.7,726.8L751.0,718.9L757.3,710.9L763.7,702.6L770.0,694.2L776.3,685.7L782.7,677.1L789.0,668.3L795.3,659.5L801.7,650.7L808.0,641.8L814.3,632.9L820.7,624.1L827.0,615.3L833.3,606.6L839.7,598.0L846.0,589.7L852.3,581.4L858.7,573.5L865.0,565.8L871.3,558.3L877.7,551.3L884.0,544.6L890.3,538.2L896.7,532.4L903.0,526.9L909.3,522.0L915.7,517.6L922.0,513.7L928.3,510.4L934.7,507.7L941.0,505.5L947.3,504.0L953.7,503.0L960.0,502.7L966.3,503.0L972.7,504.0L979.0,505.5L985.3,507.7L991.7,510.4L998.0,513.7L1004.3,517.6L1010.7,522.0L1017.0,526.9L1023.3,532.4L1029.7,538.2L1036.0,544.6L1042.3,551.3L1048.7,558.3L1055.0,565.8L1061.3,573.5L1067.7,581.4L1074.0,589.7L1080.3,598.0L1086.7,606.6L1093.0,615.3L1099.3,624.1L1105.7,632.9L1112.0,641.8L1118.3,650.7L1124.7,659.5L1131.0,668.3L1137.3,677.1L1143.7,685.7L1150.0,694.2L1156.3,702.6L1162.7,710.9L1169.0,718.9L1175.3,726.8L1181.7,734.5L1188.0,742.0L1194.3,749.3L1200.7,756.4L1207.0,763.2L1213.3,769.8L1219.7,776.2L1226.0,782.4L1232.3,788.3L1238.7,794.0L1245.0,799.5L1251.3,804.8L1257.7,809.8L1264.0,814.6L1270.3,819.2L1276.7,823.6L1283.0,827.8L1289.3,831.8L1295.7,835.6L1302.0,839.2L1308.3,842.6L1314.7,845.9L1321.0,849.0L1327.3,851.9L1333.7,854.7L1340.0,857.3L1346.3,859.8L1352.7,862.2L1359.0,864.4L1365.3,866.5L1371.7,868.5L1378.0,870.4L1384.3,872.1L1390.7,873.8L1397.0,875.4L1403.3,876.8L1409.7,878.2L1416.0,879.5L1422.3,880.8L1428.7,881.9L1435.0,883.0L1441.3,884.1L1447.7,885.0L1454.0,885.9L1460.3,886.8L1466.7,887.6L1473.0,888.3L1479.3,889.0L1485.7,889.7L1492.0,890.3L1498.3,890.9L1504.7,891.5L1511.0,892.0L1517.3,892.5L1523.7,892.9L1530.0,893.3L1536.3,893.7L1542.7,894.1L1549.0,894.5L1555.3,894.8L1561.7,895.1L1568.0,895.4L1574.3,895.7L1580.7,895.9L1587.0,896.2L1593.3,896.4L1599.7,896.6L1606.0,896.8L1612.3,897.0L1618.7,897.2L1625.0,897.3L1631.3,897.5L1637.7,897.6L1644.0,897.8L1650.3,897.9L1656.7,898.0L1663.0,898.1L1669.3,898.3L1675.7,898.4L1682.0,898.4L1688.3,898.5L1694.7,898.6L1701.0,898.7L1707.3,898.8L1713.7,898.8L1720.0,898.9" fill="none" stroke="#f5f2e7" stroke-width="4"/>
+    <line id="ch6-obs" x1="566.4888888888888" y1="510" x2="566.4888888888888" y2="900" stroke="#8fd3a8" stroke-width="4"/>
+    <text id="ch6-obst" x="580.4888888888888" y="550" fill="#8fd3a8" font-size="28">our t = −2.33</text>
+    <text id="ch6-pt" x="546.4888888888888" y="838.5714285714286" fill="#8fd3a8" font-size="34" text-anchor="end">p = 0.022</text>
+    <text x="1720" y="460" fill="#c9cfc3" font-size="28" text-anchor="end">if H₀ were true: Student’s t, 9 df</text>
+  </svg><div id="ch6-ver" class="chip" style="left:1250px;top:640px;background:rgba(224,96,79,.18);border:2px solid #e0604f;color:#f7c4bc;font-size:34px">0.022 &lt; 0.05 → reject H₀</div><div id="ch6-w1" class="card" style="left:130px;top:470px;width:800px;height:200px;padding:32px 36px;font:500 36px Inter;line-height:1.5"><span style="color:#e0604f">✗</span> p is <b>not</b> the chance<br>that the grower is right</div><div id="ch6-w2" class="card" style="left:990px;top:470px;width:800px;height:200px;padding:32px 36px;font:500 36px Inter;line-height:1.5"><span style="color:#e0604f">✗</span> not rejecting would <b>not</b> prove him right</div><div id="ch6-pw" class="abs" style="left:990px;top:720px;width:800px"><div class="lbl" style="font-size:28px;margin-bottom:14px">power with 10 oranges, true average 145 g</div>
+    <div style="position:relative;height:46px;border-radius:8px;background:rgba(245,242,231,.1);overflow:hidden"><div id="ch6-pwb" style="position:absolute;left:0;top:0;bottom:0;width:25%;background:#d9a44a;transform-origin:0 50%"></div></div>
+    <div class="mono" style="margin-top:12px;font-size:30px;color:#f3d9a8">25% · it misses 3 times in 4</div></div>
+</div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#ch6-tag",{opacity:0,y:18},{opacity:1,y:0,duration:0.5,ease:"power2.out"},0.15);
+tl.fromTo("#ch6-ttl",{opacity:0,y:18},{opacity:1,y:0,duration:0.7,ease:"power2.out"},0.30);
+tl.fromTo("#ch6-h0",{opacity:0,y:18},{opacity:1,y:0,duration:0.6,ease:"power2.out"},3.26);
+tl.fromTo("#ch6-ask",{opacity:0,y:18},{opacity:1,y:0,duration:0.6,ease:"power2.out"},5.89);
+tl.fromTo(["#ch6-rej","#ch6-rejt","#ch6-tail","#ch6-obs","#ch6-obst","#ch6-pt"],{opacity:0},{opacity:0,duration:.01},0);
+tl.fromTo("#ch6-crv",{opacity:0,y:0},{opacity:1,y:0,duration:0.6,ease:"power2.out"},9.69);
+tl.to(["#ch6-obs","#ch6-obst"],{opacity:1,duration:.5},13.45);
+tl.to("#ch6-tail",{opacity:.75,duration:.7},15.16);
+tl.to("#ch6-pt",{opacity:1,duration:.5},18.80);
+tl.to(["#ch6-rej","#ch6-rejt"],{opacity:1,duration:.6},22.56);
+tl.fromTo("#ch6-ver",{opacity:0,y:18},{opacity:1,y:0,duration:0.6,ease:"power2.out"},24.75);
+tl.to("#ch6-crv,#ch6-ver,#ch6-ask",{opacity:0,duration:0.45,ease:"power1.inOut"},27.93);
+tl.fromTo("#ch6-w1",{opacity:0,y:18},{opacity:1,y:0,duration:0.6,ease:"power2.out"},29.47);
+tl.fromTo("#ch6-w2",{opacity:0,y:18},{opacity:1,y:0,duration:0.6,ease:"power2.out"},34.09);
+tl.fromTo("#ch6-pw",{opacity:0,y:18},{opacity:1,y:0,duration:0.6,ease:"power2.out"},36.98);
+tl.fromTo("#ch6-pwb",{scaleX:0},{scaleX:1,duration:.9,ease:"power2.out"},37.56);
+tl.fromTo("#ch6-c",{scale:1,transformOrigin:"50% 45%"},{scale:1.035,duration:43.57,ease:"none"},0);
+tl.to("#ch6-c",{opacity:0,duration:.4,ease:"power1.in"},43.12);
+window.__timelines["ch6"] = tl;
+</script>
+</template>

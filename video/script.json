@@ -1,0 +1,229 @@
+{
+  "voice": "bm_george",
+  "speed": 0.95,
+  "note": "Each beat: 'say' is what the voice speaks (numbers and symbols spelled out for TTS); 'show' is the on-screen wording when it differs.",
+  "scenes": [
+    {
+      "id": "intro",
+      "title": "Opening",
+      "beats": [
+        {
+          "say": "Somewhere there is an orchard. And in it, one number we will never see exactly: the average weight of all its oranges."
+        },
+        {
+          "say": "Statistics is the art of saying something true about that number, using only a handful of oranges."
+        },
+        {
+          "say": "This film walks through how a frequentist does it, chapter by chapter, and why every step is there."
+        }
+      ]
+    },
+    {
+      "id": "ch0",
+      "title": "0 · The pool table",
+      "beats": [
+        {
+          "say": "We begin at a pool table, with a thought experiment from an essay of Thomas Bayes, published in seventeen sixty-three."
+        },
+        {
+          "say": "A white ball comes to rest at some unknown height. Then red balls are rolled, and for each one we learn a single fact: did it stop below the white ball, or above it?"
+        },
+        {
+          "say": "From those reports alone: where is the white ball?"
+        },
+        {
+          "say": "A Bayesian treats its position as uncertain, and spreads belief across the table. A curve that sharpens with every ball."
+        },
+        {
+          "say": "A frequentist refuses. The white ball is somewhere, fixed. What is random are the balls. So the frequentist asks a different question: if I repeated this experiment, how would my estimate behave?"
+        },
+        {
+          "say": "That question, how would my method behave over repetitions, is the heart of frequentist statistics. The rest of this film unpacks it."
+        }
+      ]
+    },
+    {
+      "id": "ch1",
+      "title": "1 · A fixed truth, a random sample",
+      "beats": [
+        {
+          "say": "Now, the orchard. Mew, the true average weight, plays the white ball: fixed, hidden, the thing we want."
+        },
+        {
+          "say": "The oranges we pick play the red balls. We weigh ten of them. On average, one hundred and thirty-nine grams."
+        },
+        {
+          "say": "Pick a different ten, and every number changes. The truth stays put. The sample moves."
+        },
+        {
+          "say": "So a frequentist never says, mew is probably below one hundred and fifty grams. Every probability they state describes the method, never the truth itself."
+        }
+      ]
+    },
+    {
+      "id": "ch2",
+      "title": "2 · What a probability means",
+      "beats": [
+        {
+          "say": "What does probability mean, then? For a frequentist, it is a long-run frequency."
+        },
+        {
+          "say": "Repeat the experiment many times, and count how often an event happens. Say, the average of ten oranges falling below one hundred and forty grams."
+        },
+        {
+          "say": "Early on, the ratio jumps around. Over thousands of repetitions, it settles. Here, at about fourteen and a half percent."
+        },
+        {
+          "say": "The cloud of averages from all those imagined repetitions has a name: the sampling distribution. Every tool that follows is a statement about it."
+        }
+      ]
+    },
+    {
+      "id": "ch3",
+      "title": "3 · The assumptions",
+      "beats": [
+        {
+          "say": "To know that distribution without endless repetition, we make four assumptions."
+        },
+        {
+          "say": "The target is fixed. The oranges are picked at random. The orchard does not change while we look."
+        },
+        {
+          "say": "And the average behaves like a bell curve."
+        },
+        {
+          "say": "That last one is a gift of the central limit theorem. Even when single oranges are lopsided, averages of many become bell-shaped."
+        },
+        {
+          "say": "But notice which failures hurt. A lopsided orchard bends the guarantees a little. Picking only the oranges near the road breaks them completely, and more oranges will not help."
+        }
+      ]
+    },
+    {
+      "id": "ch4",
+      "title": "4 · Estimators are random variables",
+      "beats": [
+        {
+          "say": "Our one hundred and thirty-nine grams is an estimate: one draw from the distribution of all possible averages."
+        },
+        {
+          "say": "Two facts describe that distribution. Its centre is the truth. The average does not systematically miss."
+        },
+        {
+          "say": "And its spread, sigma over the square root of n, is the standard error. Errors in independent oranges partly cancel, so averages wobble far less than single oranges."
+        },
+        {
+          "say": "Four times the oranges halves the wobble."
+        },
+        {
+          "say": "To estimate sigma itself, we divide by n minus one, not n. The sample average sits closer to its own data than the truth does, so the deviations come out slightly too small. By exactly one orange's worth."
+        }
+      ]
+    },
+    {
+      "id": "ch5",
+      "title": "5 · The standard error as a ruler",
+      "beats": [
+        {
+          "say": "Now the central move. Our average missed the grower's one hundred and fifty grams by eleven. Is that a lot?"
+        },
+        {
+          "say": "It depends on the oranges. So we stop measuring in grams, and measure in standard errors instead. Our miss is two point three three of them."
+        },
+        {
+          "say": "Measured this way, the miss follows one universal curve, whatever the orchard's average, and whatever its spread. The units cancel. Statisticians call such a quantity a pivot."
+        },
+        {
+          "say": "Because our ruler is itself estimated, the curve has slightly heavier tails: Student's t. Its middle ninety-five percent is fenced at plus or minus two point two six two."
+        }
+      ]
+    },
+    {
+      "id": "ch6",
+      "title": "6 · The hypothesis test",
+      "beats": [
+        {
+          "say": "The first decision tool is the hypothesis test. Assume the grower is right, and ask: would our data be surprising?"
+        },
+        {
+          "say": "If the true average were one hundred and fifty grams, a sample as low as ours, or lower, turns up only two point two percent of the time. That is the p value."
+        },
+        {
+          "say": "It falls below our threshold of five percent, fixed in advance. So we reject the claim."
+        },
+        {
+          "say": "But be precise. The p value is not the chance that the grower is right. And failing to reject would not have proved him right: with ten oranges, this test misses a real five gram shortfall three times out of four."
+        }
+      ]
+    },
+    {
+      "id": "ch7",
+      "title": "7 · The confidence interval",
+      "beats": [
+        {
+          "say": "The second tool turns the question around. Instead of testing one value, collect every value the data cannot rule out."
+        },
+        {
+          "say": "Our ninety-five percent confidence interval runs from one hundred and twenty-eight point three, to one hundred and forty-nine point seven grams."
+        },
+        {
+          "say": "Here is the subtle part. The truth is either inside it, or not. There is no probability left."
+        },
+        {
+          "say": "The ninety-five percent describes the method. Like a player who rings the peg nineteen times in twenty, it describes the skill, never a single ring."
+        }
+      ]
+    },
+    {
+      "id": "ch8",
+      "title": "8 · Strengths and limitations",
+      "beats": [
+        {
+          "say": "Those guarantees come with a condition: you must follow the plan."
+        },
+        {
+          "say": "Imagine an impatient inspector, who tests after every single orange, and stops the moment the p value dips below five percent."
+        },
+        {
+          "say": "Every grower she inspects is honest. Yet the p value wanders, and each peek is another lottery ticket. Instead of five percent, she accuses nearly a third of them."
+        },
+        {
+          "say": "Same data, different procedure, different error rate. The guarantee belongs to the rule, not to the numbers on the page."
+        }
+      ]
+    },
+    {
+      "id": "ch9",
+      "title": "9 · The bigger picture",
+      "beats": [
+        {
+          "say": "Step back, and the whole method fits on one line."
+        },
+        {
+          "say": "Treat the truth as fixed. Model how the data arise. Choose an estimator."
+        },
+        {
+          "say": "Imagine repeating the experiment. Turn the miss into a pivot."
+        },
+        {
+          "say": "Then test, or build an interval. And decide, knowing how often you would be wrong."
+        }
+      ]
+    },
+    {
+      "id": "outro",
+      "title": "Closing",
+      "beats": [
+        {
+          "say": "We can never see the white ball. We can never weigh every orange."
+        },
+        {
+          "say": "But we can know, precisely and honestly, how often our methods lead us astray."
+        },
+        {
+          "say": "That is the quiet power of frequentist reasoning. Not certainty about the truth, but certainty about ourselves."
+        }
+      ]
+    }
+  ]
+}

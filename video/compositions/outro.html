@@ -1,0 +1,34 @@
+<template>
+<style>
+#root{position:absolute;inset:0;overflow:hidden;color:#f5f2e7;font-family:'Inter',sans-serif;
+  background:radial-gradient(1500px 760px at 18% -4%,rgba(60,140,108,.42),transparent 62%),linear-gradient(165deg,#134232 0%,#0b2c21 58%,#082119 100%)}
+#outro-c{position:absolute;inset:0}
+.tag{position:absolute;left:132px;top:96px;font:500 28px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#d9a44a}
+.ttl{position:absolute;left:130px;top:132px;font:600 66px 'EB Garamond',serif;letter-spacing:-.01em;color:#f5f2e7;white-space:nowrap}
+.abs{position:absolute}
+.lbl{font:500 30px 'Inter',sans-serif;color:#c9cfc3}
+.mono{font-family:'IBM Plex Mono',monospace}
+.serif{font-family:'EB Garamond',serif}
+.card{position:absolute;background:rgba(245,242,231,.06);border:1px solid rgba(245,242,231,.18);border-radius:12px}
+.chip{position:absolute;border-radius:999px;padding:12px 26px;font:600 30px 'Inter',sans-serif;white-space:nowrap}
+svg{position:absolute;overflow:visible}
+svg text{font-family:'IBM Plex Mono',monospace}
+</style>
+<div id="root" data-composition-id="outro" data-width="1920" data-height="1080">
+<div id="outro-c" data-layout-allow-overlap>
+<svg id="outro-wb" width="1920" height="1080" style="left:0;top:0"><defs><radialGradient id="outro-g-red" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#f4917d"/><stop offset="55%" stop-color="#c24b3a"/><stop offset="100%" stop-color="#74251c"/></radialGradient><radialGradient id="outro-g-yellow" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#f6d79a"/><stop offset="55%" stop-color="#d9a44a"/><stop offset="100%" stop-color="#8a5d12"/></radialGradient><radialGradient id="outro-g-white" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#fffdf6"/><stop offset="55%" stop-color="#efe9d8"/><stop offset="100%" stop-color="#c9c0a9"/></radialGradient><radialGradient id="outro-g-orange" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#ffc27a"/><stop offset="55%" stop-color="#e8912f"/><stop offset="100%" stop-color="#9a4f0c"/></radialGradient></defs><circle cx="960" cy="300" r="110" fill="rgba(245,242,231,.06)"/><circle id="outro-white" cx="960.0" cy="300.0" r="46" fill="url(#outro-g-white)" stroke="#b3a98f" stroke-width="1"/></svg><div id="outro-l1" class="abs serif" style="left:0;width:1920px;top:430px;text-align:center;font-size:58px;font-style:italic;color:#c9cfc3">We can never see the white ball. We can never weigh every orange.</div><div id="outro-l2" class="abs serif" style="left:0;width:1920px;top:540px;text-align:center;font-size:58px;font-style:italic">But we can know how often our methods lead us astray.</div><div id="outro-l3" class="abs serif" style="left:0;width:1920px;top:700px;text-align:center;font-size:76px;font-weight:600;color:#f3d9a8;line-height:1.2">Not certainty about the truth,<br>but certainty about ourselves.</div>
+</div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#outro-white",{opacity:0,scale:0.4,transformOrigin:"50% 50%"},{opacity:1,scale:1,duration:0.8,ease:"back.out(1.7)"},0.30);
+tl.fromTo("#outro-l1",{opacity:0,y:18},{opacity:1,y:0,duration:0.9,ease:"power2.out"},1.02);
+tl.fromTo("#outro-l2",{opacity:0,y:18},{opacity:1,y:0,duration:0.9,ease:"power2.out"},5.83);
+tl.to("#outro-l1",{opacity:0.35,duration:0.45,ease:"power1.inOut"},11.31);
+tl.to("#outro-l2",{opacity:0.5,duration:0.45,ease:"power1.inOut"},11.31);
+tl.fromTo("#outro-l3",{opacity:0,y:18},{opacity:1,y:0,duration:1.1,ease:"power2.out"},13.98);
+tl.fromTo("#outro-c",{scale:1,transformOrigin:"50% 45%"},{scale:1.035,duration:19.87,ease:"none"},0);
+tl.to("#outro-c",{opacity:0,duration:.4,ease:"power1.in"},19.42);
+window.__timelines["outro"] = tl;
+</script>
+</template>

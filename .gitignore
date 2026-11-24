@@ -1,0 +1,14 @@
+# HyperFrames working files and caches
+video/.hyperframes/
+video/.thumbnails/
+video/.waveform-cache/
+video/node_modules/
+# generated narration (rebuild with: node video/build/voice.mjs)
+video/assets/vo/
+video/build/check.json
+video/build/transcript.out
+# OS
+.DS_Store
+Thumbs.db
+video/build/check.err
+video/build/fix1.mjs

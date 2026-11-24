@@ -1,0 +1,392 @@
+{
+  "lead": 0.8,
+  "gap": 0.45,
+  "tail": 1.1,
+  "scenes": [
+    {
+      "id": "intro",
+      "start": 0,
+      "beats": [
+        {
+          "i": 1,
+          "start": 0.8,
+          "dur": 7.744,
+          "say": "Somewhere there is an orchard. And in it, one number we will never see exactly: the average weight of all its oranges."
+        },
+        {
+          "i": 2,
+          "start": 8.994,
+          "dur": 6.763,
+          "say": "Statistics is the art of saying something true about that number, using only a handful of oranges."
+        },
+        {
+          "i": 3,
+          "start": 16.207,
+          "dur": 6.208,
+          "say": "This film walks through how a frequentist does it, chapter by chapter, and why every step is there."
+        }
+      ],
+      "dur": 23.515
+    },
+    {
+      "id": "ch0",
+      "start": 23.515,
+      "beats": [
+        {
+          "i": 1,
+          "start": 0.8,
+          "dur": 7.851,
+          "say": "We begin at a pool table, with a thought experiment from an essay of Thomas Bayes, published in seventeen sixty-three."
+        },
+        {
+          "i": 2,
+          "start": 9.101,
+          "dur": 11.008,
+          "say": "A white ball comes to rest at some unknown height. Then red balls are rolled, and for each one we learn a single fact: did it stop below the white ball, or above it?"
+        },
+        {
+          "i": 3,
+          "start": 20.559,
+          "dur": 3.456,
+          "say": "From those reports alone: where is the white ball?"
+        },
+        {
+          "i": 4,
+          "start": 24.465,
+          "dur": 8.469,
+          "say": "A Bayesian treats its position as uncertain, and spreads belief across the table. A curve that sharpens with every ball."
+        },
+        {
+          "i": 5,
+          "start": 33.384,
+          "dur": 13.355,
+          "say": "A frequentist refuses. The white ball is somewhere, fixed. What is random are the balls. So the frequentist asks a different question: if I repeated this experiment, how would my estimate behave?"
+        },
+        {
+          "i": 6,
+          "start": 47.189,
+          "dur": 9.195,
+          "say": "That question, how would my method behave over repetitions, is the heart of frequentist statistics. The rest of this film unpacks it."
+        }
+      ],
+      "dur": 57.483
+    },
+    {
+      "id": "ch1",
+      "start": 80.998,
+      "beats": [
+        {
+          "i": 1,
+          "start": 0.8,
+          "dur": 6.613,
+          "say": "Now, the orchard. Mew, the true average weight, plays the white ball: fixed, hidden, the thing we want."
+        },
+        {
+          "i": 2,
+          "start": 7.863,
+          "dur": 7.36,
+          "say": "The oranges we pick play the red balls. We weigh ten of them. On average, one hundred and thirty-nine grams."
+        },
+        {
+          "i": 3,
+          "start": 15.673,
+          "dur": 5.973,
+          "say": "Pick a different ten, and every number changes. The truth stays put. The sample moves."
+        },
+        {
+          "i": 4,
+          "start": 22.097,
+          "dur": 10.453,
+          "say": "So a frequentist never says, mew is probably below one hundred and fifty grams. Every probability they state describes the method, never the truth itself."
+        }
+      ],
+      "dur": 33.65
+    },
+    {
+      "id": "ch2",
+      "start": 114.648,
+      "beats": [
+        {
+          "i": 1,
+          "start": 0.8,
+          "dur": 5.461,
+          "say": "What does probability mean, then? For a frequentist, it is a long-run frequency."
+        },
+        {
+          "i": 2,
+          "start": 6.711,
+          "dur": 10.133,
+          "say": "Repeat the experiment many times, and count how often an event happens. Say, the average of ten oranges falling below one hundred and forty grams."
+        },
+        {
+          "i": 3,
+          "start": 17.295,
+          "dur": 8.555,
+          "say": "Early on, the ratio jumps around. Over thousands of repetitions, it settles. Here, at about fourteen and a half percent."
+        },
+        {
+          "i": 4,
+          "start": 26.299,
+          "dur": 10.091,
+          "say": "The cloud of averages from all those imagined repetitions has a name: the sampling distribution. Every tool that follows is a statement about it."
+        }
+      ],
+      "dur": 37.49
+    },
+    {
+      "id": "ch3",
+      "start": 152.138,
+      "beats": [
+        {
+          "i": 1,
+          "start": 0.8,
+          "dur": 5.355,
+          "say": "To know that distribution without endless repetition, we make four assumptions."
+        },
+        {
+          "i": 2,
+          "start": 6.605,
+          "dur": 6.272,
+          "say": "The target is fixed. The oranges are picked at random. The orchard does not change while we look."
+        },
+        {
+          "i": 3,
+          "start": 13.327,
+          "dur": 3.093,
+          "say": "And the average behaves like a bell curve."
+        },
+        {
+          "i": 4,
+          "start": 16.87,
+          "dur": 9.344,
+          "say": "That last one is a gift of the central limit theorem. Even when single oranges are lopsided, averages of many become bell-shaped."
+        },
+        {
+          "i": 5,
+          "start": 26.664,
+          "dur": 11.947,
+          "say": "But notice which failures hurt. A lopsided orchard bends the guarantees a little. Picking only the oranges near the road breaks them completely, and more oranges will not help."
+        }
+      ],
+      "dur": 39.711
+    },
+    {
+      "id": "ch4",
+      "start": 191.849,
+      "beats": [
+        {
+          "i": 1,
+          "start": 0.8,
+          "dur": 8,
+          "say": "Our one hundred and thirty-nine grams is an estimate: one draw from the distribution of all possible averages."
+        },
+        {
+          "i": 2,
+          "start": 9.25,
+          "dur": 7.424,
+          "say": "Two facts describe that distribution. Its centre is the truth. The average does not systematically miss."
+        },
+        {
+          "i": 3,
+          "start": 17.124,
+          "dur": 12.053,
+          "say": "And its spread, sigma over the square root of n, is the standard error. Errors in independent oranges partly cancel, so averages wobble far less than single oranges."
+        },
+        {
+          "i": 4,
+          "start": 29.627,
+          "dur": 3.093,
+          "say": "Four times the oranges halves the wobble."
+        },
+        {
+          "i": 5,
+          "start": 33.171,
+          "dur": 15.232,
+          "say": "To estimate sigma itself, we divide by n minus one, not n. The sample average sits closer to its own data than the truth does, so the deviations come out slightly too small. By exactly one orange's worth."
+        }
+      ],
+      "dur": 49.503
+    },
+    {
+      "id": "ch5",
+      "start": 241.351,
+      "beats": [
+        {
+          "i": 1,
+          "start": 0.8,
+          "dur": 7.232,
+          "say": "Now the central move. Our average missed the grower's one hundred and fifty grams by eleven. Is that a lot?"
+        },
+        {
+          "i": 2,
+          "start": 8.482,
+          "dur": 8.96,
+          "say": "It depends on the oranges. So we stop measuring in grams, and measure in standard errors instead. Our miss is two point three three of them."
+        },
+        {
+          "i": 3,
+          "start": 17.892,
+          "dur": 11.797,
+          "say": "Measured this way, the miss follows one universal curve, whatever the orchard's average, and whatever its spread. The units cancel. Statisticians call such a quantity a pivot."
+        },
+        {
+          "i": 4,
+          "start": 30.139,
+          "dur": 12.096,
+          "say": "Because our ruler is itself estimated, the curve has slightly heavier tails: Student's t. Its middle ninety-five percent is fenced at plus or minus two point two six two."
+        }
+      ],
+      "dur": 43.335
+    },
+    {
+      "id": "ch6",
+      "start": 284.687,
+      "beats": [
+        {
+          "i": 1,
+          "start": 0.8,
+          "dur": 8.213,
+          "say": "The first decision tool is the hypothesis test. Assume the grower is right, and ask: would our data be surprising?"
+        },
+        {
+          "i": 2,
+          "start": 9.463,
+          "dur": 11.392,
+          "say": "If the true average were one hundred and fifty grams, a sample as low as ours, or lower, turns up only two point two percent of the time. That is the p value."
+        },
+        {
+          "i": 3,
+          "start": 21.305,
+          "dur": 6.272,
+          "say": "It falls below our threshold of five percent, fixed in advance. So we reject the claim."
+        },
+        {
+          "i": 4,
+          "start": 28.027,
+          "dur": 14.443,
+          "say": "But be precise. The p value is not the chance that the grower is right. And failing to reject would not have proved him right: with ten oranges, this test misses a real five gram shortfall three times out of four."
+        }
+      ],
+      "dur": 43.57
+    },
+    {
+      "id": "ch7",
+      "start": 328.257,
+      "beats": [
+        {
+          "i": 1,
+          "start": 0.8,
+          "dur": 8.235,
+          "say": "The second tool turns the question around. Instead of testing one value, collect every value the data cannot rule out."
+        },
+        {
+          "i": 2,
+          "start": 9.485,
+          "dur": 9.685,
+          "say": "Our ninety-five percent confidence interval runs from one hundred and twenty-eight point three, to one hundred and forty-nine point seven grams."
+        },
+        {
+          "i": 3,
+          "start": 19.62,
+          "dur": 6.443,
+          "say": "Here is the subtle part. The truth is either inside it, or not. There is no probability left."
+        },
+        {
+          "i": 4,
+          "start": 26.513,
+          "dur": 10.112,
+          "say": "The ninety-five percent describes the method. Like a player who rings the peg nineteen times in twenty, it describes the skill, never a single ring."
+        }
+      ],
+      "dur": 37.725
+    },
+    {
+      "id": "ch8",
+      "start": 365.981,
+      "beats": [
+        {
+          "i": 1,
+          "start": 0.8,
+          "dur": 4.288,
+          "say": "Those guarantees come with a condition: you must follow the plan."
+        },
+        {
+          "i": 2,
+          "start": 5.538,
+          "dur": 9.088,
+          "say": "Imagine an impatient inspector, who tests after every single orange, and stops the moment the p value dips below five percent."
+        },
+        {
+          "i": 3,
+          "start": 15.076,
+          "dur": 11.136,
+          "say": "Every grower she inspects is honest. Yet the p value wanders, and each peek is another lottery ticket. Instead of five percent, she accuses nearly a third of them."
+        },
+        {
+          "i": 4,
+          "start": 26.662,
+          "dur": 7.979,
+          "say": "Same data, different procedure, different error rate. The guarantee belongs to the rule, not to the numbers on the page."
+        }
+      ],
+      "dur": 35.741
+    },
+    {
+      "id": "ch9",
+      "start": 401.722,
+      "beats": [
+        {
+          "i": 1,
+          "start": 0.8,
+          "dur": 3.285,
+          "say": "Step back, and the whole method fits on one line."
+        },
+        {
+          "i": 2,
+          "start": 4.535,
+          "dur": 5.269,
+          "say": "Treat the truth as fixed. Model how the data arise. Choose an estimator."
+        },
+        {
+          "i": 3,
+          "start": 10.255,
+          "dur": 4.395,
+          "say": "Imagine repeating the experiment. Turn the miss into a pivot."
+        },
+        {
+          "i": 4,
+          "start": 15.099,
+          "dur": 5.419,
+          "say": "Then test, or build an interval. And decide, knowing how often you would be wrong."
+        }
+      ],
+      "dur": 21.618
+    },
+    {
+      "id": "outro",
+      "start": 423.34,
+      "beats": [
+        {
+          "i": 1,
+          "start": 0.8,
+          "dur": 4.309,
+          "say": "We can never see the white ball. We can never weigh every orange."
+        },
+        {
+          "i": 2,
+          "start": 5.559,
+          "dur": 5.397,
+          "say": "But we can know, precisely and honestly, how often our methods lead us astray."
+        },
+        {
+          "i": 3,
+          "start": 11.407,
+          "dur": 7.36,
+          "say": "That is the quiet power of frequentist reasoning. Not certainty about the truth, but certainty about ourselves."
+        }
+      ],
+      "dur": 19.867
+    }
+  ],
+  "total": 443.207
+}
